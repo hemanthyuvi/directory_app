@@ -1,0 +1,73 @@
+<div class="container contact-form">
+  <div class="card p-3" style="width: 50rem;">
+    <div class="mb-2">
+      <a class="stretched-link" style="position: relative;text-decoration: none;" (click)="backPage()"><i class="bi bi-arrow-left-square-fill backIcon"></i></a>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Add New Contact</h5>
+      <div class="contact-main">
+        <div class="rightSection">
+          <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+              <label for="contactName" class="form-label">Contact Name<span class="mandatory"><i class="bi bi-asterisk mandatoryIcon"></i></span></label>
+              <input type="text" formControlName="contactName" class="form-control" id="contactName" placeholder="Enter Contact Name">
+              <span class="text-danger" *ngIf="(myForm.contactName.touched || submitted) && myForm.contactName.errors?.required">
+                contact name is required
+             </span>
+            </div>
+            <div class="mb-3">
+              <label for="workType" class="form-label">Work Type<span class="mandatory"><i class="bi bi-asterisk mandatoryIcon"></i></span></label>
+              <input type="text" formControlName="workType" class="form-control" id="workType" placeholder="Enter Contact Name">
+              <span class="text-danger" *ngIf="(myForm.workType.touched || submitted) && myForm.workType.errors?.required">
+                work type is required
+             </span>
+            </div>
+            <div class="mb-3">
+              <label for="phoneNo" class="form-label">Mobile<span class="mandatory"><i class="bi bi-asterisk mandatoryIcon"></i></span></label>
+              <input type="number" formControlName="phoneNo" class="form-control" id="phoneNo" placeholder="Enter phone Number" maxlength="10">
+              <!-- Error block -->
+              <span class="text-danger" *ngIf="(myForm.phoneNo.touched || submitted)  && myForm.phoneNo.errors?.required">
+                phone No is required
+              </span>
+              <span class="text-danger" *ngIf="(myForm.phoneNo.touched || submitted) && myForm.phoneNo.errors?.maxlength">
+                Enter valid phone number
+              </span>
+              <span class="text-danger" *ngIf="(myForm.phoneNo.touched || submitted) && myForm.phoneNo.errors?.pattern">
+                Enter valid phone number
+              </span>
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email<span class="mandatory"><i class="bi bi-asterisk mandatoryIcon"></i></span></label>
+              <input type="text" formControlName="email" class="form-control" id="email" placeholder="Enter Email address">
+              <span class="text-danger" *ngIf="(myForm.email.touched || submitted) && myForm.email.errors?.required">
+                  Email is required
+               </span>
+              <span class="text-danger"
+                  *ngIf="myForm.email.touched && myForm.email.errors?.email">
+                  Enter a valid email address
+              </span>
+              <span class="text-danger" *ngIf="notFound">
+                {{alreadyExistsMessage}}
+             </span>
+            </div>
+            <div class="mb-3">
+              <label for="location" class="form-label">Location<span class="mandatory"><i class="bi bi-asterisk mandatoryIcon"></i></span></label>
+              <input type="text" formControlName="location" class="form-control" id="location" placeholder="Enter Contact Name">
+              <span class="text-danger" *ngIf="(myForm.location.touched || submitted) && myForm.location.errors?.required">
+                location is required
+             </span>
+            </div>
+          <div class="mb-3">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </form>
+        </div>
+        <div class="leftSection">
+          <img class="registerImage" src="../../assets/register.png"/>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-toast *ngIf="enableToast" [toastMessage]="toastMessage" (enableToast)="closeToast($event)"></app-toast>

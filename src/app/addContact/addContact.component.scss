@@ -1,0 +1,36 @@
+.contact-form{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.contact-main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.rightSection{
+    width: 50%;
+}
+
+.leftSection{
+    width: 50%;
+}
+
+.backIcon{
+    font-size: 30px;
+    color: #0d6efd;
+    cursor: pointer;
+}
+
+.mandatory{
+    position: relative;
+    top: -5px;
+}
+
+.mandatoryIcon{
+    font-size: 8px;
+    color: red;
+}

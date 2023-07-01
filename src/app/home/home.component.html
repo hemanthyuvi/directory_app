@@ -1,0 +1,55 @@
+<div class="container-fluid">
+  <nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+      <div class="logoSection">
+        <h5>Save Contacts</h5>
+      </div>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contactus</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Aboutus</a>
+          </li>
+        </ul>
+        <div class="logoutSection">
+            <button type="button" class="btn btn-primary" (click)="isLoggedOut()">Logout</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <div class="addContact">
+      <button type="button" class="btn btn-primary" (click)="addContact()">Add New Contact</button>
+    </div>
+    <router-outlet></router-outlet>
+  </div>
+
+</div>
+
+<!-- <app-show-dialog *ngIf="showModal" [showModal]="showModal" (logout)="logoutUser($event)"></app-show-dialog> -->
+<div class="modal" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Logout</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to be logout? 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+        <button type="button" class="btn btn-primary" (click)="logoutUser()">yes</button>
+      </div>
+    </div>
+  </div>
+</div>

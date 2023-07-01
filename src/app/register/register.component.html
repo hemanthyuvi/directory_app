@@ -1,0 +1,84 @@
+<div class="container register-form">
+  <div class="card p-3" style="width: 50rem;">
+    <div class="mb-2">
+      <a routerLink="/login" class="stretched-link" style="position: relative;text-decoration: none;"><i class="bi bi-arrow-left-square-fill backIcon"></i></a>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Sign Up</h5>
+      <div class="register-main">
+        <div class="rightSection">
+          <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+              <label for="userName" class="form-label">UserName<span class="mandatory"><i class="bi bi-asterisk mandatoryIcon"></i></span></label>
+              <input type="text" formControlName="userName" class="form-control" id="userName" placeholder="Enter username">
+              <span class="text-danger" *ngIf="(myForm.userName.touched || submitted) && myForm.userName.errors?.required">
+                UserName is required
+             </span>
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email<span class="mandatory"><i class="bi bi-asterisk mandatoryIcon"></i></span></label>
+              <input type="text" formControlName="email" class="form-control" id="email" placeholder="Enter Email address">
+              <span class="text-danger" *ngIf="(myForm.email.touched || submitted) && myForm.email.errors?.required">
+                  Email is required
+               </span>
+              <span class="text-danger"
+                  *ngIf="myForm.email.touched && myForm.email.errors?.email">
+                  Enter a valid email address
+              </span>
+              <span class="text-danger" *ngIf="notFound">
+                {{alreadyExistsMessage}}
+             </span>
+            </div>
+            <div class="mb-3">
+              <label for="mobileNo" class="form-label">Mobile<span class="mandatory"><i class="bi bi-asterisk mandatoryIcon"></i></span></label>
+              <input type="number" formControlName="mobileNo" class="form-control" id="mobileNo" placeholder="Enter Mobile Number" maxlength="10">
+              <!-- Error block -->
+              <span class="text-danger" *ngIf="(myForm.mobileNo.touched || submitted)  && myForm.mobileNo.errors?.required">
+                Mobile No is required
+              </span>
+              <span class="text-danger" *ngIf="(myForm.mobileNo.touched || submitted) && myForm.mobileNo.errors?.maxlength">
+                Enter valid mobile number
+              </span>
+              <span class="text-danger" *ngIf="(myForm.mobileNo.touched || submitted) && myForm.mobileNo.errors?.pattern">
+                Enter valid mobile number
+              </span>
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Password<span class="mandatory"><i class="bi bi-asterisk mandatoryIcon"></i></span></label>
+              <input type="password" formControlName="password" class="form-control" id="password" placeholder="Enter password">
+              <span class="text-danger"
+                  *ngIf="(myForm.password.touched || submitted) && myForm.password.errors?.required">
+                  Password is required
+              </span>
+                <span class="text-danger"
+                    *ngIf="myForm.password.touched && myForm.password.errors?.invalidPassword">
+                    Password should have minimum 8 characters, at least 1 uppercase letter, 1 lowercase
+                    letter and 1 number
+                </span>
+            </div>
+            <div class="mb-3">
+              <label for="confirmPassword" class="form-label">Confirm Password<span class="mandatory"><i class="bi bi-asterisk mandatoryIcon"></i></span></label>
+              <input type="password" formControlName="confirmPassword" class="form-control" id="confirmPassword" placeholder="Enter confirm password">
+              <span class="text-danger"
+                  *ngIf="(myForm.confirmPassword.touched || submitted ) && myForm.confirmPassword.errors?.required">
+                  Confirm Password is required
+              </span>
+              <span class="text-danger"
+                  *ngIf="myForm.confirmPassword.touched && myForm.confirmPassword.errors?.MatchPassword">
+                  Passwords does not match
+              </span>
+            </div>
+          <div class="mb-3">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </form>
+        </div>
+        <div class="leftSection">
+          <img class="registerImage" src="../../assets/register.png"/>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-toast *ngIf="enableToast" [toastMessage]="toastMessage" (enableToast)="closeToast($event)"></app-toast>

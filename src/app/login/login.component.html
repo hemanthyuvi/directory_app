@@ -1,0 +1,43 @@
+<div class="container login-form">
+  <div class="card p-3" style="width: 40rem;">
+    <div class="card-body">
+      <h5 class="card-title">Login</h5>
+      <div class="login-main">
+        <div class="rightSection">
+          <form [formGroup]="loginForm" (ngSubmit)="loggedIn()">
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="text" formControlName="email" class="form-control" id="email" placeholder="Enter email">
+              <span class="text-danger" *ngIf="(myForm.email.touched || submitted) && myForm.email.errors?.required">
+                Email is required
+             </span>
+            <span class="text-danger"
+                *ngIf="myForm.email.touched && myForm.email.errors?.email">
+                Enter a valid email address
+            </span>
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input type="password" formControlName="password" class="form-control" id="password" placeholder="Enter password">
+              <span class="text-danger" *ngIf="(myForm.password.touched || submitted) && myForm.password.errors?.required">
+                Password is required
+             </span>
+            </div>
+            <div class="mb-3">
+              <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+          </form>
+          <div class="mb-3">
+            <a routerLink="/register" class="stretched-link m-3" style="position: relative;">Register here</a>
+            <a routerLink="/forgot" class="stretched-link m-3" style="position: relative;">Forgot Password?</a>
+          </div>
+        </div>
+        <div class="leftSection">
+          <img class="loginImage" src="../../assets/login.png"/>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-toast *ngIf="enableToast" [toastMessage]="toastMessage" (enableToast)="closeToast($event)"></app-toast>
